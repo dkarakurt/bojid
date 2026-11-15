@@ -128,7 +128,7 @@ body{min-height:100vh;display:flex;justify-content:center;padding:32px 16px 56px
 .mixer{background:#fff;border-radius:14px;padding:16px 18px;box-shadow:0 20px 40px -24px rgba(0,0,0,.25),0 1px 4px rgba(0,0,0,.06)}
 .mhead{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:10px}
 .mhead h3{margin:0;font-family:"Space Mono",monospace;font-size:11px;letter-spacing:.14em}
-.mrow{display:grid;grid-template-columns:30px 150px minmax(0,1fr) 90px 30px 30px;gap:8px;align-items:center;padding:5px 6px;border-radius:9px}
+.mrow{display:grid;grid-template-columns:30px 150px minmax(0,1fr) 90px 30px 30px 30px;gap:8px;align-items:center;padding:5px 6px;border-radius:9px}
 .mrow.sel{background:#f3f2ee}
 .mrow.off .mpat,.mrow.off .minst{opacity:.4}
 .mnum{width:28px;height:28px;border-radius:50%;border:0;background:var(--c);color:#fff;font-family:"Space Mono",monospace;font-size:11px;font-weight:700;cursor:pointer}
@@ -144,7 +144,7 @@ body{min-height:100vh;display:flex;justify-content:center;padding:32px 16px 56px
 .mbtn{width:28px;height:28px;border-radius:7px;border:1px solid #dddcd8;background:#fff;font-family:"Space Mono",monospace;font-size:11px;cursor:pointer}
 .mbtn.on{background:#1d1e20;color:#fff;border-color:#1d1e20}
 .mbtn.on.s{background:#e0b21f;border-color:#e0b21f;color:#1d1e20}
-@media (max-width:700px){.mrow{grid-template-columns:28px minmax(0,1fr) 28px 28px;row-gap:6px}.mpat{grid-column:1/-1;order:5}.mvol{grid-column:1/-1;order:6}}
+@media (max-width:700px){.mrow{grid-template-columns:28px minmax(0,1fr) 28px 28px 28px;row-gap:6px}.mpat{grid-column:1/-1;order:5}.mvol{grid-column:1/-1;order:6}}
 
 /* ================= APP MODE (tablet / phone) ================= */
 .appbar,.tabbar{display:none}
@@ -183,7 +183,7 @@ body.app .controls .group{padding:6px 8px 7px}
 body.app .btn{min-height:42px}
 /* channels pane */
 body.app .mixer{padding:14px 16px;border-radius:16px}
-body.app .mrow{grid-template-columns:44px 190px minmax(0,1fr) 130px 44px 44px;gap:12px;padding:9px 8px;border-bottom:1px solid #f0efeb}
+body.app .mrow{grid-template-columns:44px 190px minmax(0,1fr) 130px 44px 44px 44px;gap:12px;padding:9px 8px;border-bottom:1px solid #f0efeb}
 body.app .mnum{width:40px;height:40px;font-size:13px}
 body.app .minst{height:44px;font-size:12px}
 body.app .mpat{height:34px}
@@ -191,7 +191,7 @@ body.app .mbtn{width:44px;height:44px;border-radius:10px;font-size:12px}
 body.app .mvol{height:30px}
 body.app .mhint{display:block}
 .mhint{display:none;font-size:12px;color:var(--muted);margin:2px 0 10px}
-@media (max-width:700px){body.app .mrow{grid-template-columns:40px minmax(0,1fr) 44px 44px}}
+@media (max-width:700px){body.app .mrow{grid-template-columns:40px minmax(0,1fr) 44px 44px 44px}}
 /* sounds pane */
 body.app .lib.active{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;background:none;box-shadow:none;padding:0}
 body.app .lib section{background:#fff;border-radius:16px;padding:16px;margin:0 !important;border:0 !important;box-shadow:0 1px 4px rgba(0,0,0,.06)}
@@ -266,6 +266,35 @@ body.app .khint{display:none}
   @keyframes rot{0%,25%{transform:rotate(0)}55%,100%{transform:rotate(-90deg)}}
 }
 
+.pbtn.orange{background:var(--orange);color:#fff}
+.mbtn.bt{font-size:15px;line-height:1;color:var(--orange)}
+.bgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px}
+.bcard{border:1px solid #e7e6e2;border-radius:12px;padding:12px;display:flex;flex-direction:column;gap:9px;background:#fbfbf9}
+.bcard .bt1{display:flex;align-items:baseline;gap:8px}
+.bcard b{font-family:"Space Mono",monospace;font-size:12px;letter-spacing:.04em}
+.bcard .meta{margin-left:auto;font-family:"Space Mono",monospace;font-size:9px;color:var(--muted);letter-spacing:.06em;white-space:nowrap}
+.bprev{display:flex;flex-direction:column;gap:2px}
+.bprev div{display:grid;grid-template-columns:repeat(16,1fr);gap:1px;height:5px}
+.bprev i{background:#ecebe7;border-radius:1px}
+.bcard .chs{font-size:11px;color:#55565a;line-height:1.4}
+.bcard .acts{display:flex;gap:6px}
+.bcard .acts .pbtn{padding:7px 10px;font-size:10px}
+.bempty{font-size:12px;color:var(--muted);line-height:1.6;padding:4px 2px}
+.modal{position:fixed;inset:0;z-index:15;background:rgba(29,30,32,.35);backdrop-filter:blur(2px);display:flex;align-items:center;justify-content:center;padding:16px}
+.sheet{background:#fff;border-radius:18px;width:min(460px,100%);max-height:calc(100dvh - 32px);overflow:auto;padding:20px;box-shadow:0 30px 80px -20px rgba(0,0,0,.45)}
+.sheet h3{margin:0 0 4px;font-family:"Space Mono",monospace;font-size:12px;letter-spacing:.14em}
+.sheet p{margin:0 0 14px;font-size:12.5px;color:var(--muted);line-height:1.5}
+.sheet input[type=text]{width:100%;border:1px solid #dddcd8;border-radius:10px;padding:11px 12px;font-family:"Space Mono",monospace;font-size:13px;text-transform:uppercase}
+.chk{display:flex;align-items:center;gap:10px;padding:8px 6px;border-radius:8px;font-size:13px;cursor:pointer}
+.chk:hover{background:#f3f2ee}
+.chk input{width:18px;height:18px;accent-color:#1d1e20}
+.chk .dot{width:10px;height:10px;border-radius:50%}
+.chk small{margin-left:auto;font-family:"Space Mono",monospace;font-size:10px;color:var(--muted)}
+.sheet .foot{display:flex;gap:8px;justify-content:flex-end;margin-top:16px}
+.pick{display:flex;align-items:center;gap:10px;width:100%;text-align:left;border:1px solid #e7e6e2;background:#fbfbf9;border-radius:10px;padding:11px 12px;margin-bottom:6px;cursor:pointer;font-family:"Space Mono",monospace;font-size:12px}
+.pick:hover{border-color:#1d1e20}
+.pick small{margin-left:auto;color:var(--muted);font-size:10px}
+body.app .bcard .acts .pbtn{padding:10px 12px}
 .toast{position:fixed;left:50%;bottom:22px;transform:translateX(-50%) translateY(20px);background:#1d1e20;color:#fff;font-family:"Space Mono",monospace;font-size:12px;padding:10px 16px;border-radius:10px;opacity:0;transition:.25s;pointer-events:none;z-index:9}
 .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
 .start{position:fixed;inset:0;background:rgba(243,242,239,.85);backdrop-filter:blur(3px);display:grid;place-items:center;z-index:10;cursor:pointer}
@@ -340,9 +369,13 @@ body.app .khint{display:none}
   </main>
   <section class="mixer" data-pane="mix">
     <div class="mhead"><h3>KANALLAR</h3><span class="lbl">her kanal: bir enstrüman + kendi pattern'i · ▶ hepsini birlikte çalar</span>
-      <div style="margin-left:auto;display:flex;gap:6px"><button class="pbtn alt" id="newBtn">YENİ PROJE</button><button class="pbtn alt" id="demoBtn">DEMO</button></div></div>
+      <div style="margin-left:auto;display:flex;gap:6px;flex-wrap:wrap"><button class="pbtn orange" id="saveBeatBtn">BEAT KAYDET</button><button class="pbtn alt" id="newBtn">YENİ PROJE</button><button class="pbtn alt" id="demoBtn">DEMO</button></div></div>
     <p class="mhint">Bir kanalın numarasına ya da pattern'ine dokun: o kanal seçilir ve SETUP'ta düzenlenir.</p>
     <div id="mixRows"></div>
+    <div class="beats">
+      <div class="mhead" style="margin:18px 0 8px"><h3>BEATLERİM</h3><span class="lbl">kaydettiğin beat'ler · projeden bağımsız saklanır</span></div>
+      <div class="bgrid" id="beatList"></div>
+    </div>
   </section>
   </div>
 
@@ -380,6 +413,7 @@ body.app .khint{display:none}
         <kbd>Z</kbd>/<kbd>X</kbd> oktav · <kbd>Boşluk</kbd> çal/durdur · <kbd>R</kbd> kayıt<br>
         <kbd>1</kbd>–<kbd>8</kbd> kanal seç · <kbd>M</kbd> mute<br><br></span>
         <b>Kanallar:</b> her kanala bir enstrüman seç (davul, piyano, bas…) ve kendi melodisini yaz. ▶ tüm kanalları birlikte çalar; M susturur, S sadece o kanalı dinletir.<br>
+        <b>Beat kaydet:</b> KANALLAR'da BEAT KAYDET ile kanalları enstrümanlarıyla kaydet. Yeni projede bir kanalın <b>+</b> tuşuyla ya da BEATLERİM'den ekle.<br>
         <b>Uzun melodi:</b> uzunluğu 4 bara kadar artır, 1–4 tuşlarıyla barlar arasında gez. ×2 mevcut bar'ı kopyalar.<br>
         <b>Pattern yazmak:</b> bir nota çal, sonra step'lere tıkla — o nota step'e eklenir/çıkarılır. Davulda her tuş ayrı bir enstrüman.<br>
         <b>Knob:</b> yukarı/aşağı sürükle, tekerlek, çift tık = varsayılan. <kbd>Shift</kbd> ince ayar.
@@ -830,7 +864,7 @@ function switchEngine(k){const tr=tracks[sel],old=tr.sound;if(old.engine===k)ret
   if(k==='drum'){s.p.cut=18000;s.p.a=.001;}
   setSound(tr,s);page='SYNTH';renderPages();updateKnobs();renderKeys();renderSteps();renderLib();renderMixer();saveState();}
 function persistPresets(){if(!store.set('px16.presets',JSON.stringify(userPresets)))toast('Tarayıcı depolaması kapalı: sesler bu oturumda kalır');}
-$('#saveBtn').onclick=()=>{const inp=$('#saveName');const name=(inp.value.trim()||tracks[sel].sound.name.replace(/\*$/,'')+' 2').toUpperCase().slice(0,16);
+$('#saveBtn').onclick=()=>{const inp=$('#saveName');const name=(inp.value.trim()||tracks[sel].sound.name.replace(/\*$/,'')+' 2').toLocaleUpperCase('tr-TR').slice(0,16);
   const s=clone(tracks[sel].sound);s.name=name;tracks[sel].sound.name=name;
   const ex=userPresets.findIndex(u=>u.name===name);if(ex>=0)userPresets[ex]=s;else userPresets.push(s);
   persistPresets();inp.value='';renderLib();renderMixer();saveState();toast(`“${name}” kaydedildi`);};
@@ -844,7 +878,7 @@ async function handleFiles(files){resume();
     try{
       const ab=await file.arrayBuffer();const buf=await decode(ab.slice(0));
       const id='s'+Date.now().toString(36)+Math.random().toString(36).slice(2,6);
-      const name=file.name.replace(/\.[^.]+$/,'').toUpperCase().replace(/[^A-Z0-9ÇĞİÖŞÜ \-_]/g,'').slice(0,16)||'SAMPLE';
+      const name=file.name.replace(/\.[^.]+$/,'').toLocaleUpperCase('tr-TR').replace(/[^A-Z0-9ÇĞİÖŞÜ \-_]/g,'').slice(0,16)||'SAMPLE';
       addSample(id,buf,name);
       const pr=makeSound(name,'sampler',{a:.003,d:1,s:1,r:.25,cut:18000,res:.7,amt:0,vol:.7},{sampleId:id,root:60});
       userPresets.push(pr);
@@ -880,23 +914,115 @@ function renderMixer(){
       <select class="minst" title="Enstrüman">${presetOptions(tr.sound)}</select>
       <div class="mpat" title="Pattern (${tr.len/16} bar)">${cells}</div>
       <input class="mvol" type="range" min="0" max="1" step="0.01" value="${tr.sound.p.vol}" title="Seviye">
-      <button class="mbtn${tr.mute?' on':''}" data-a="m" title="Sustur">M</button><button class="mbtn${tr.solo?' on s':''}" data-a="s" title="Solo">S</button>`;
+      <button class="mbtn${tr.mute?' on':''}" data-a="m" title="Sustur">M</button><button class="mbtn${tr.solo?' on s':''}" data-a="s" title="Solo">S</button><button class="mbtn bt" title="Bu kanala kayıtlı beat ekle">+</button>`;
     const go=()=>{selectTrack(i);if(document.body.classList.contains('app'))setTab('setup');};
     row.querySelector('.mnum').onclick=go;
     row.querySelector('.mpat').onclick=go;
     row.querySelector('.minst').onchange=e=>{const v=e.target.value;if(!v)return;const pr=v[0]==='p'?PRESETS[+v.slice(1)]:userPresets[+v.slice(1)];
       if(sel!==i){sel=i;viewBar=0;renderTracks();}loadPreset(pr);};
     row.querySelector('.mvol').oninput=e=>{const v=+e.target.value;tr.sound.p.vol=v;tr.out.gain.setTargetAtTime(v,ctx.currentTime,.01);if(i===sel&&page==='FILTER')updateKnobs();saveStateSoon();};
-    row.querySelectorAll('.mbtn').forEach(b=>b.onclick=()=>{if(b.dataset.a==='m')tr.mute=!tr.mute;else tr.solo=!tr.solo;renderTracks();renderMixer();saveState();});
+    row.querySelector('.bt').onclick=()=>openBeatPicker(i);
+    row.querySelectorAll('.mbtn:not(.bt)').forEach(b=>b.onclick=()=>{if(b.dataset.a==='m')tr.mute=!tr.mute;else tr.solo=!tr.solo;renderTracks();renderMixer();saveState();});
     box.appendChild(row);
   });
   renderMixerPlayhead();
+  renderBeats();
 }
 let lastPh=-2;
 function renderMixerPlayhead(){
   document.querySelectorAll('.mrow').forEach((row,i)=>{const tr=tracks[i];const cs=row.querySelectorAll('.mpat i');
     cs.forEach(c=>c.classList.remove('ph'));if(uiStep>=0){const c=cs[uiStep%tr.len];if(c)c.classList.add('ph');}});
 }
+
+
+/* ================= BEATS (saved patterns, project-independent) ================= */
+const BKEY='px16.beats';
+let beats=[];
+try{const b=JSON.parse(store.get(BKEY)||'[]');if(Array.isArray(b))beats=b;}catch(e){}
+function persistBeats(){if(!store.set(BKEY,JSON.stringify(beats)))toast('Tarayıcı depolaması kapalı: beat bu oturumda kalır');}
+const hasNotes=tr=>tr.steps.slice(0,tr.len).some(a=>a.length);
+function modal(html){closeModal();const m=document.createElement('div');m.className='modal';m.id='modal';m.innerHTML=`<div class="sheet">${html}</div>`;
+  m.addEventListener('pointerdown',e=>{if(e.target===m)closeModal();});document.body.appendChild(m);return m;}
+function closeModal(){const m=$('#modal');if(m)m.remove();}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal();},true);
+function nextBeatName(){let n=beats.length+1;while(beats.some(b=>b.name==='BEAT '+n))n++;return 'BEAT '+n;}
+
+function openSaveBeat(){
+  const any=tracks.some(hasNotes);
+  if(!any){toast('Önce bir pattern yaz — kanallar boş');return;}
+  const rows=tracks.map((tr,i)=>{const on=hasNotes(tr);return `<label class="chk"><input type="checkbox" data-i="${i}" ${on?'checked':''} ${on?'':'disabled'}>
+    <span class="dot" style="background:${TCOL[i]}"></span>${i+1} · ${esc(tr.sound.name)}<small>${on?tr.len/16+' BAR':'boş'}</small></label>`;}).join('');
+  const m=modal(`<h3>BEAT KAYDET</h3><p>Seçtiğin kanallar enstrümanlarıyla birlikte kaydedilir. Sonra herhangi bir projede bir kanala ekleyebilirsin.</p>
+    <input type="text" id="beatName" maxlength="20" value="${nextBeatName()}">
+    <div style="margin:12px 0 0">${rows}</div>
+    <label class="chk" style="margin-top:6px;border-top:1px solid #efeeea;padding-top:12px"><input type="checkbox" id="beatBpm" checked>Tempoyu da kaydet<small>${bpm} BPM</small></label>
+    <div class="foot"><button class="pbtn alt" id="mCancel">VAZGEÇ</button><button class="pbtn orange" id="mOk">KAYDET</button></div>`);
+  const nm=m.querySelector('#beatName');nm.focus();nm.select();
+  m.querySelector('#mCancel').onclick=closeModal;
+  const ok=()=>{const ids=[...m.querySelectorAll('input[data-i]:checked')].map(x=>+x.dataset.i);
+    if(!ids.length){toast('En az bir kanal seç');return;}
+    const name=(nm.value.trim()||nextBeatName()).toLocaleUpperCase('tr-TR').slice(0,20);
+    const beat={id:'b'+Date.now().toString(36),name,bpm:m.querySelector('#beatBpm').checked?bpm:null,created:Date.now(),
+      channels:ids.map(i=>{const tr=tracks[i];return {sound:clone(tr.sound),len:tr.len,steps:tr.steps.slice(0,tr.len).map(a=>[...a])};})};
+    const ex=beats.findIndex(b=>b.name===name);
+    if(ex>=0)beats[ex]=beat;else beats.unshift(beat);
+    persistBeats();closeModal();renderBeats();toast(`“${name}” kaydedildi`);};
+  m.querySelector('#mOk').onclick=ok;nm.addEventListener('keydown',e=>{if(e.key==='Enter')ok();});
+}
+
+function applyBeat(beat,start){
+  if(playing)[...held.keys()].forEach(noteOff);
+  const projectEmpty=!tracks.some(hasNotes);
+  let placed=0;
+  beat.channels.forEach((ch,k)=>{const i=start+k;if(i>=NT)return;const tr=tracks[i];
+    const snd=clone(ch.sound);if(snd.engine==='sampler'&&!SAMPLES[snd.sampleId])snd.sampleId='vox';
+    setSound(tr,{...snd,p:{...ENGINES[snd.engine].def,...COMMON_DEF,...snd.p}});
+    tr.steps=emptySteps();ch.steps.forEach((a,j)=>{if(j<MAXS)tr.steps[j]=[...a];});
+    tr.len=[16,32,48,64].includes(ch.len)?ch.len:16;tr.mute=false;tr.skip.clear();
+    const f=tr.steps.find(a=>a.length);tr.last=f?f[0]:tr.last;placed++;});
+  if(beat.bpm&&projectEmpty){setBpm(beat.bpm);}
+  sel=start;viewBar=0;
+  renderTracks();renderSteps();renderKeys();updateKnobs();renderLib();renderMixer();saveState();
+  const skipped=beat.channels.length-placed;
+  toast(`“${beat.name}” → kanal ${start+1}${placed>1?'–'+(start+placed):''}`+(skipped?` (${skipped} kanal sığmadı)`:''));
+}
+function beatTarget(beat,start){
+  const n=Math.min(beat.channels.length,NT-start);
+  const busy=[];for(let k=0;k<n;k++)if(hasNotes(tracks[start+k]))busy.push(start+k+1);
+  if(!busy.length){applyBeat(beat,start);return;}
+  const m=modal(`<h3>ÜZERİNE YAZILSIN MI?</h3><p>Kanal ${busy.join(', ')} dolu. “${esc(beat.name)}” bu kanalların pattern'ini ve enstrümanını değiştirecek.</p>
+    <div class="foot"><button class="pbtn alt" id="mCancel">VAZGEÇ</button><button class="pbtn orange" id="mOk">EKLE</button></div>`);
+  m.querySelector('#mCancel').onclick=closeModal;m.querySelector('#mOk').onclick=()=>{closeModal();applyBeat(beat,start);};
+}
+function openBeatPicker(i){
+  if(!beats.length){modal(`<h3>KANAL ${i+1} · BEAT EKLE</h3><p>Henüz kayıtlı beat yok. Bir pattern yaz, sonra KANALLAR'daki <b>BEAT KAYDET</b> ile kaydet.</p>
+    <div class="foot"><button class="pbtn" onclick="document.getElementById('modal').remove()">TAMAM</button></div>`);return;}
+  const m=modal(`<h3>KANAL ${i+1} · BEAT EKLE</h3><p>Çok kanallı bir beat, kanal ${i+1}'den başlayarak sıradaki kanallara yerleşir.</p>
+    ${beats.map((b,k)=>`<button class="pick" data-k="${k}"><span class="dot" style="width:9px;height:9px;border-radius:50%;background:${ECOL[b.channels[0].sound.engine]}"></span>${esc(b.name)}<small>${b.channels.length} kanal${b.bpm?' · '+b.bpm+' BPM':''}</small></button>`).join('')}
+    <div class="foot"><button class="pbtn alt" id="mCancel">VAZGEÇ</button></div>`);
+  m.querySelector('#mCancel').onclick=closeModal;
+  m.querySelectorAll('.pick').forEach(p=>p.onclick=()=>{closeModal();beatTarget(beats[+p.dataset.k],i);});
+}
+function renderBeats(){
+  const box=$('#beatList');if(!box)return;
+  if(!beats.length){box.innerHTML='<div class="bempty">Henüz kayıtlı beat yok. Kanallara pattern yaz ve <b>BEAT KAYDET</b>\'e bas. Kayıtlı beat\'ler YENİ PROJE\'den sonra da burada durur.</div>';return;}
+  box.innerHTML='';
+  beats.forEach((b,k)=>{const c=document.createElement('div');c.className='bcard';
+    const prev=b.channels.slice(0,4).map(ch=>{const col=ECOL[ch.sound.engine];let r='';for(let j=0;j<16;j++)r+=`<i style="${ch.steps[j]&&ch.steps[j].length?'background:'+col:''}"></i>`;return `<div>${r}</div>`;}).join('');
+    c.innerHTML=`<div class="bt1"><b>${esc(b.name)}</b><span class="meta">${b.channels.length} KANAL${b.bpm?' · '+b.bpm+' BPM':''}</span></div>
+      <div class="bprev">${prev}</div>
+      <div class="chs">${b.channels.map(ch=>esc(ch.sound.name)+' · '+ch.len/16+' bar').join('<br>')}</div>
+      <div class="acts"><button class="pbtn" data-a="add">KANAL ${sel+1}'E EKLE</button><button class="pbtn alt" data-a="pick">KANAL SEÇ…</button><button class="pbtn alt" data-a="del" title="Sil" style="margin-left:auto">SİL</button></div>`;
+    c.querySelector('[data-a=add]').onclick=()=>beatTarget(b,sel);
+    c.querySelector('[data-a=pick]').onclick=()=>{const m=modal(`<h3>${esc(b.name)} · HANGİ KANAL?</h3><p>Beat seçtiğin kanaldan başlayarak yerleşir.</p>
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px">${tracks.map((tr,i)=>`<button class="pick" data-i="${i}" style="justify-content:center;margin:0;flex-direction:column;gap:4px"><span style="width:26px;height:26px;border-radius:50%;background:${TCOL[i]};color:#fff;display:grid;place-items:center;font-weight:700">${i+1}</span><small style="margin:0">${hasNotes(tr)?'dolu':'boş'}</small></button>`).join('')}</div>
+        <div class="foot"><button class="pbtn alt" id="mCancel">VAZGEÇ</button></div>`);
+      m.querySelector('#mCancel').onclick=closeModal;m.querySelectorAll('.pick').forEach(p=>p.onclick=()=>{closeModal();beatTarget(b,+p.dataset.i);});};
+    c.querySelector('[data-a=del]').onclick=()=>{const m=modal(`<h3>BEAT SİLİNSİN Mİ?</h3><p>“${esc(b.name)}” kalıcı olarak silinecek.</p><div class="foot"><button class="pbtn alt" id="mCancel">VAZGEÇ</button><button class="pbtn" id="mOk">SİL</button></div>`);
+      m.querySelector('#mCancel').onclick=closeModal;m.querySelector('#mOk').onclick=()=>{beats=beats.filter(x=>x!==b);persistBeats();closeModal();renderBeats();};};
+    box.appendChild(c);});
+}
+$('#saveBeatBtn').onclick=openSaveBeat;
 
 /* ================= STATE ================= */
 const SKEY='px16.v2';
